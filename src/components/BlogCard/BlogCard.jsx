@@ -11,7 +11,7 @@ import {
   UserBox,
   UserInfo,
   UserName,
-  Date,
+  DateComponent,
 } from './BlogCard.styled';
 
 import { formatDistanceToNow } from 'date-fns';
@@ -41,9 +41,9 @@ export const BlogCard = ({
             <Avatar src={avatar} alt={name} />
             <UserInfo>
               <UserName>{name}</UserName>
-              <Date>
+              <DateComponent>
                 {formatDistanceToNow(new Date(postedAt), { addSuffix: true })}
-              </Date>
+              </DateComponent>
             </UserInfo>
           </UserBox>
         </CardFooter>
