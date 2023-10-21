@@ -2,7 +2,7 @@ import { Component, useEffect, useState } from 'react';
 import { makeNormalizedPhoto } from 'helpers/makeNormalizedPhotos';
 
 import * as ImageService from 'service/image-service';
-import { Button, SearchForm, Grid, GridItem, Text, CardItem } from 'components';
+import { Button, SearchForm, Grid, GridItem, Text, ImageCard } from 'components';
 import { DnaSpiner } from 'components/spiner/Spiner';
 
 export const Gallery = () => {
@@ -55,9 +55,7 @@ export const Gallery = () => {
           {images.map(({ id, alt, avg_color, medium, large }) => {
             return (
               <GridItem key={id}>
-                <CardItem color={avg_color}>
-                  <img src={medium} alt={alt} />
-                </CardItem>
+                <ImageCard color={avg_color} medium={ medium} alt = {alt} large = {large} />
               </GridItem>
             );
           })}
