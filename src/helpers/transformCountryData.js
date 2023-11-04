@@ -8,7 +8,7 @@ export const transformCountryData = data => {
       languages,
     }) => ({
       id: common,
-      countryName: official,
+      country: official,
       flag: flags.png,
       capital,
       population,
