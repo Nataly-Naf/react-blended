@@ -19,7 +19,7 @@ export const Home = () => {
     <Section>
       <Container>
         {error && <Heading>{error.message}</Heading>}
-        {isLoading && <Heading>"LOADING..."</Heading>}
+        {isLoading && <Loader />}
         {countries.length > 0 && <CountryList countries={countries} />}
       </Container>
     </Section>
