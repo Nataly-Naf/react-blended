@@ -4,6 +4,7 @@ export const todoSlice = createSlice({
   name: 'blogData',
   initialState: {
     todos: [],
+    filter: '',
   },
   reducers: {
     addTodo: (state, { payload }) => {
@@ -17,8 +18,11 @@ export const todoSlice = createSlice({
         payload.id === todo.id ? { ...todo, text: payload.text } : todo
       );
     },
+    setFilter: (state, { payload }) => {
+      state.filter = payload;
+    },
   },
 });
 
 export const todoReducer = todoSlice.reducer;
-export const { addTodo, deleteTodo, editTodo } = todoSlice.actions;
+export const { addTodo, deleteTodo, editTodo, setFilter } = todoSlice.actions;

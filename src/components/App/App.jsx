@@ -11,11 +11,14 @@ import {
   Text,
   Todo,
 } from 'components';
-import { useSelector } from 'react-redux';
-import { selectTodos } from 'components/redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFilter, selectFilteredTodos } from 'redux/selectors';
+import { setFilter } from 'redux/todoSlice';
 
 export const App = () => {
-  const todos = useSelector(selectTodos);
+  const todos = useSelector(selectFilteredTodos);
+  const dispatch = useDispatch();
+
   // const [todos, setTodos] = useState([]);
 
   // const addTodo = text => {
@@ -35,12 +38,19 @@ export const App = () => {
   //   setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
   // };
 
+  const filterValue = useSelector(selectFilter);
+
+  const handleInput = evt => {
+    dispatch(setFilter(evt.target.value));
+  };
+
   return (
     <>
       <Header />
       <Section>
         <Container>
           <SearchForm />
+          <input type="text" value={filterValue} onChange={handleInput} />
 
           {todos.length === 0 && (
             <Text textAlign="center">There are no any todos ... </Text>

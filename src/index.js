@@ -5,7 +5,7 @@ import 'modern-normalize';
 
 import { App } from 'components';
 import { GlobalStyles, theme } from 'styles';
-import { persistor, store } from 'components/redux/store';
+import { persistor, store } from 'redux/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 

@@ -4,7 +4,7 @@ import { FiSearch } from 'react-icons/fi';
 import { FormBtn, InputSearch, SearchFormStyled } from './SearchForm.styled';
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
-import { addTodo } from 'components/redux/todoSlice';
+import { addTodo } from 'redux/todoSlice';
 
 export const SearchForm = () => {
   const [searchQuery, setSearchQuery] = useState('');
