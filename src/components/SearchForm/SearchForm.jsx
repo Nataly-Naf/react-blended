@@ -1,47 +1,52 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { FiSearch } from 'react-icons/fi';
 import { FormBtn, InputSearch, SearchFormStyled } from './SearchForm.styled';
+import { useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
+import { addTodo } from 'components/redux/todoSlice';
 
-export class SearchForm extends Component {
-  state = {
-    query: '',
+export const SearchForm = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const dispatch = useDispatch();
+
+  const handleInput = e => {
+    setSearchQuery(e.currentTarget.value);
   };
 
-  handleInput = e => {
-    this.setState({
-      query: e.currentTarget.value,
-    });
-  };
-
-  handleSubmit = e => {
-    const { query } = this.state;
+  const handleSubmit = e => {
+    // const { query } = this.state;
 
     e.preventDefault();
 
-    this.props.onSubmit(query);
-
-    this.setState({
-      query: '',
-    });
-  };
-  render() {
-    const { query } = this.state;
-
-    return (
-      <SearchFormStyled onSubmit={this.handleSubmit}>
-        <FormBtn type="submit">
-          <FiSearch size="16px" />
-        </FormBtn>
-        <InputSearch
-          onChange={this.handleInput}
-          placeholder="What do you want to write?"
-          name="search"
-          required
-          value={query}
-          autoFocus
-        />
-      </SearchFormStyled>
+    dispatch(
+      addTodo({
+        id: nanoid(),
+        text: searchQuery,
+      })
     );
-  }
-}
+
+    // this.setState({
+    //   query: '',
+    // });
+    setSearchQuery('');
+  };
+
+  // const { query } = this.state;
+
+  return (
+    <SearchFormStyled onSubmit={handleSubmit}>
+      <FormBtn type="submit">
+        <FiSearch size="16px" />
+      </FormBtn>
+      <InputSearch
+        onChange={handleInput}
+        placeholder="What do you want to write?"
+        name="search"
+        required
+        value={searchQuery}
+        autoFocus
+      />
+    </SearchFormStyled>
+  );
+};
